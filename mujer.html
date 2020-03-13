@@ -64,8 +64,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="suicidios.html" style="background-color: white;">Suicidios en el mundo</a>
-            <a class="collapse-item" href="mujer.html">Muejeres victimas violencia</a>
+            <a class="collapse-item" href="suicidios.html" style="background-color: white;">Suicidios en el mundo </a>
+            <a class="collapse-item" href="mujer.html">Violencia de niños</a>
           </div>
         </div>
       </li>
@@ -260,28 +260,36 @@
 
             <div class="col-lg-12 mb-4">
 
+              <!-- Illustrations -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Violencia intrafamiliar contra niños y niñas</h6>
+                </div>
+               
+              </div>
 
             </div>
             <div class="col-lg-12 mb-4">
               <!-- Illustrations -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Mujeres Victimas De La Violencia</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Datos</h6>
                 </div>
                 <div class="card-body">
                   <table class="table" id="table">
                         <tr>
-                          <th>Municipio</th>
-                          <th>Entre 0 y 5</th>
-                          <th>Entre 6 y 11</th>
-                          <th>Entre 12 y 17</th>
-                          <th>Entre 18 y 28</th>
-                          <th>Entre 29 y 60</th>
-                          <th>Entre 61 y 100</th>
-                          
+                          <th>Grupo de edad</th>
+                          <th>Hombre</th>
+                          <th>Porcentaje Hombre</th>
+                          <th>tasa Hombre</th>
+                          <th>Mujer</th>
+                          <th>Porcentaje Mujer</th>
+                          <th>Tasa Mujer</th>
+                          <th>Total</th>
+                          <th>Tasa Total</th>
                         </tr>
-                     
-                    
+                   
+                      
                      
                   </table>
                 </div>
@@ -311,7 +319,7 @@
           $(document).ready(function(){
             let table = document.getElementById('table');
             $.ajax({
-              url: "https://www.datos.gov.co/resource/xd2b-h2z6.json",
+              url: "https://www.datos.gov.co/resource/dgr9-9unc.json",
               type: "GET",
               data: {
                 "$limit" : 5,
@@ -322,19 +330,20 @@
                     if(iterator.grupo_de_edad != undefined) {
                       table.innerHTML = table.innerHTML + 
                     "<tr>" + 
-                        "<td>"+ iterator.municipio +"</td>" +
-                        "<td>"+ iterator.Entre_0_5 +"</td>" +
-                        "<td>"+ iterator.Entre_6_11 +"</td>" +
-                        "<td>"+ iterator.Entre_12_17 +"</td>" +
-                        "<td>"+ iterator.Entre_18_28 +"</td>" +
-                        "<td>"+ iterator.Entre_29_60 +"</td>" +
-                        "<td>"+ iterator.Entre_61_100 +"</td>" +
-                        
+                        "<td>"+ iterator.grupo_de_edad +"</td>" +
+                        "<td>"+ iterator.hombre_1 +"</td>" +
+                        "<td>"+ iterator.hombre_2 +"</td>" +
+                        "<td>"+ iterator.tasa_hombre +"</td>" +
+                        "<td>"+ iterator.mujer_1 +"</td>" +
+                        "<td>"+ iterator.mujer_2 +"</td>" +
+                        "<td>"+ iterator.tasa_mujer +"</td>" +
+                        "<td>"+ iterator.total_1 +"</td>" +
+                        "<td>"+ iterator.total_2+"</td>" +
                     "<tr>"
                     }
 
-                    if(iterator.municipio != undefined) {
-                      chardata.push(iterator.municipio);
+                    if(iterator.total_1 != undefined) {
+                      chardata.push(iterator.total_1);
                     }
                 }
                 chardata.push
@@ -346,7 +355,7 @@
           });
           console.log(chardata);
 
-
+        
           
         </script>
       </div>
